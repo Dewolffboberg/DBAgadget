@@ -1,0 +1,60 @@
+body {  color: #000000;  font-family: 'Roboto', sans-serif;  text-align: center;  background-color:  #ffffff ;}.center-on-page {  position: absolute;  top:50%;  left: 50%;  transform: translate(-50%,-50%);}h1 {  text-align: center;  color:#FFFFFF;}img {  vertical-align: middle; }
+/* Reset Select */
+select {  -webkit-appearance: none;  -moz-appearance: none;  -ms-appearance: none;  appearance: none;  outline: 0;  box-shadow: none;  border: 0 !important;  background: #000000;  background-image: none;}
+/* Custom Select */
+/* .select {  position: relative;  display: block;  width: 20em;  height: 3em;  line-height: 3;  background: #000000;  overflow: hidden;  border-radius: .25em;} */
+select {  width: 100%;  height: 100%;  margin: 0;  padding: 0 0 0 .5em;  color: #006400;  cursor: pointer;}
+select::-ms-expand {  display: none;}
+/* Arrow */
+/* .select::after {  content: '\25BC';  position: absolute;  top: 0;  right: 0;  bottom: 0;  padding: 0 1em;  background: #34495e;  pointer-events: none;} */
+/* Transition */
+/* .select:hover::after {  color: #f39c12;}.select::after {  -webkit-transition: .25s all ease;  -o-transition: .25s all ease;  transition: .25s all ease;} */
+/* button{  -webkit-appearance: none;  -moz-appearance: none;  -ms-appearance: none;  appearance: none;  outline: 0;  box-shadow: none;  border: 0 !important;  background: #006400;  background-image: none;  width: 10%;  height: 30px;  margin: 0;  margin-top: 20px;  color: #fff;  cursor: pointer;  border-radius: .25em;}.button:hover{  color: #f39c12;} */
+
+
+h1 {
+
+font-family: Georgia, "Times New Roman", Times, serif;
+
+font-size: 40px;
+font-style: italic;
+
+font-weight: bold;
+color: #000000;
+margin: 20px;
+background-image: url(/Users/kvwork/Downloads/myprogram/templates/0.png);
+background-repeat: no-repeat;
+background-position: left top;
+background-size: contain;
+margin-top:10px;
+padding-top: 10px;
+
+
+}
+
+#centerDoc {
+
+font-family: Georgia, "Times New Roman", Times, serif;
+
+font-size: 18px;
+
+font-weight: bold;
+
+color: #0;
+
+}
+p {
+  width: 10%;
+
+}
+table
+{
+counter-reset: Serial;
+border-collapse: separate;
+}
+
+tr td:first-child:before
+{
+counter-increment: Serial; /* Increment the Serial counter */
+content: counter(Serial); /* Display the counter */
+}

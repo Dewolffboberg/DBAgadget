@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+<link href="style.css" rel="stylesheet" type="text/css">
+  <h1>DB&A NEWS </h1>
+    <div class="select" id="centerDoc">
+      <form method="post" action="/dbanews" >
+        Company Name:<br>
+        <input type="text" name="company_name" size="100" maxlength="2000" id="company_name" value="{{ request.form['company_name'] }}" placeholder="company_name" ><br>
+        <div class="checkbox">
+        Source:<br>
+        <input type="text" name="news_source" size="100" maxlength="2000" id="news_source" value="{{ request.form['news_source'] }}" placeholder="news_source" ><br>
+        <label><input type="checkbox" name="check1" value="PRnewswire.com">PRnewswire </label>
+        <label><input type="checkbox" name="check2" value="wsj.com">Wall Street Journal</label>
+        <label><input type="checkbox" name="check3" value="https://www.businesswire.com">Business Wire</label><br>
+        <!-- <label><input type="checkbox" name="check4" value="nasdaq.com">NASDAQ</label> -->        </div>
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+      </form>
+      <a href="{{ url_for('dbanews') }}"><button>Reset</button></a>
+      <a href="/dbasearch"><button>TO DBA SEARCH</button></a>
+
+
+    </div>
+    <table class="table table-striped" border="2|0">
+      <thead >
+        <tr>
+          <th>link</th>
+          <th>title</th>
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for d in data1 %}
+          <tr>
+              <td><a href="{{d}}" taget ="_blank">{{d}}</a></td>
+              <td>{{data2[loop.index0]}}</td>
+              <td>{{data3[loop.index0]}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+
+
+
+</html>

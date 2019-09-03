@@ -1,0 +1,75 @@
+<!doctype html>
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> -->
+<html>
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<!-- <div class="center-on-page" id="centerDoc"> -->
+  <h1>DB&A Search </h1>
+  <!-- <form class="pure-form" method="POST"> -->
+    <div class="select" id="centerDoc">
+      <form method="post" action="/" >
+        Site:<br>
+        <input type="text" name="site" size="100" maxlength="2000" id="site" value="{{ request.form['site'] }}" placeholder="site" ><br>
+        Title:<br>
+        <div class="checkbox">
+        <label><input type="checkbox" name="check1" value="Chief">Chief </label>
+        <label><input type="checkbox" name="check2" value="vice president">Vice President</label>
+        <label><input type="checkbox" name="check3" value="leadership">Leadership</label>
+        </div>
+        <!-- <input type = "checkbox" name = "maths" value = "on" /> Maths -->
+        <input list="title" name="title" type="text" value="{{ request.form['title'] }}" placeholder="title"/>
+        <datalist id="title">
+          <option value="president">
+          <option value="chief">
+          <option value="vice">
+          <option value="vice president">
+          <option value="ceo">
+          <option value="executive">
+          <option value="leadership">
+        </datalist>
+        <!-- <input type="text" name="title"><br> -->
+        <!-- <button type="submit" class="btn">Go</button> -->
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        <!-- <input type="reset" type="reset" ></input> -->
+
+        <!-- <output name = "x"> {{ data | safe }} </output> -->
+      </form>
+      <a href="{{ url_for('index') }}"><button>Reset</button></a>
+    </div>
+
+  <!-- </form> -->
+
+
+<!--
+{% if error %}
+      <p class='alert'>{{ error }}</p>
+    {% elif data %} -->
+    <table class="pure-table" border="1|0">
+        <tr>
+            <!-- <th>#</th> -->
+            <th>Description</th>
+        </tr>
+        {% for d in data %}
+            <tr>
+                <!-- <td></td> -->
+                <td> {% for s in d %}
+                  <table class="pure-table" border="1|0">
+                    <tr>
+                        {% for k in s %}
+                        <td> {{k}} </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                    </table>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <!-- <p>{{ title }}</p> -->
+    <!-- <p>{{data}}</p>  -->
+<!-- {% endif %} -->
+
+
+<!-- onsubmit='return write_below(this);' -->
+</html>

@@ -13,7 +13,7 @@
         <label><input type="checkbox" name="check2" value="vice president">Vice President</label>
         <label><input type="checkbox" name="check3" value="leadership">Leadership</label>
         </div>
-        <input list="title" name="title" type="text" value="{{ request.form['title'] }}" placeholder="title"/>
+        <input list="title" name="title" type="text" value="{{ request.form['title'] }}" placeholder="keyword"/>
         <datalist id="title">
           <option value="president">
           <option value="chief">
@@ -49,5 +49,7 @@
         </tbody>
         </table>
 
+                  <p>  <b> {{text}} </b> </p>
+                  
 
 </html>

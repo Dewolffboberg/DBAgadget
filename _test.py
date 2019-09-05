@@ -24,11 +24,11 @@ def index():
     sum = 0
     site = "google"
     title = "dbaresults "
+    no_results_message = " "
     check_1 = 0
     check_2 = 0
     check_3 = 0
     error = None
-    no_result_message = " "
     if request.method == 'POST':
         if request.form.get("check1"):
             check_1 = 1
@@ -62,10 +62,10 @@ def index():
             res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
             return res
         def highlight_title(search_word, text):
-            # mystring = text
-            # no_special_char = HTMLParser.HTMLParser().unescape(mystring)
+            mystring = text
+            no_special_char = HTMLParser.HTMLParser().unescape(mystring)
             search_word_1 = search_word.lower()
-            text_1 = text.lower()
+            text_1 = no_special_char.lower()
             text_2 = text_1.encode('ascii', 'ignore')
             cleantext = BeautifulSoup(text_2, "html").text
             if search_word_1 in cleantext:
@@ -78,26 +78,24 @@ def index():
         name = site +" "+title
         result = google_search("site:"+name, my_api_key, my_cse_id)
         if result:
-            total_results = result['queries']['request'][0]['totalResults']
-            if total_results == '0':
-                no_result_message = "Nothing Found"
-            else:
-                i=0
-                while(i<=10):
-                    try:
-                        data = []
-                        json_title = result['items'][i]['link']
-                        json_title_1 = result['items'][i]['htmlTitle']
-                        json_title_2 = result['items'][i]['snippet']
-                        data1.append(highlight_title(title,json_title))
-                        data2.append(highlight_title(title,json_title_1))
-                        data3.append(highlight_title(title,json_title_2))
-                        i = i+1
-                    except:
-                        i = i+1
+            i=0
+            while(i<=10):
+                try:
+                    data = []
+                    json_title = result['items'][i]['link']
+                    json_title_1 = result['items'][i]['htmlTitle']
+                    json_title_2 = result['items'][i]['snippet']
+                    data1.append(highlight_title(title,json_title))
+                    data2.append(highlight_title(title,json_title_1))
+                    data3.append(highlight_title(title,json_title_2))
+                    i = i+1
+                except:
+                    i = i+1
+        else:
+            no_results_message = "Nothing Found"            
 
     return render_template("dbasearch.html",
-                            data1 = data1, data2 = data2, data3= data3, text = no_result_message , error = error)
+                            data1 = data1, data2 = data2, data3= data3, text = no_results_message , error = error)
 
 @app.route('/dbanews', methods=['GET','POST'])
 def dbanews():
@@ -109,10 +107,10 @@ def dbanews():
     check_2 = 0
     check_3 = 0
     check_4 = 0
+    no_results_message = " "   
     error = None
     company_name = 'apple'
     news_site = 'google.com'
-    no_result_message = " "
     if request.method == 'POST':
         if request.form.get('company_name'):
             company_name = request.form.get('company_name')
@@ -166,25 +164,23 @@ def dbanews():
         name = news_site +" "+ company_name
         result = google_search(name, my_api_key, my_cse_id)
         if result:
-            total_results = result['queries']['request'][0]['totalResults']
-            if total_results == '0':
-                no_result_message = "Nothing Found"
-            else:
-                i=0
-                while(i<=10):
-                    try:
-                        data = []
-                        json_title = result['items'][i]['link']
-                        json_title_1 = result['items'][i]['htmlTitle']
-                        json_title_2 = result['items'][i]['snippet']
-                        data1.append(cleantext(json_title))
-                        data2.append(cleantext(json_title_1))
-                        data3.append(cleantext(json_title_2))
-                        i = i+1
-                    except:
-                        i = i+1
+            i=0
+            while(i<=10):
+                try:
+                    data = []
+                    json_title = result['items'][i]['link']
+                    json_title_1 = result['items'][i]['htmlTitle']
+                    json_title_2 = result['items'][i]['snippet']
+                    data1.append(cleantext(json_title))
+                    data2.append(cleantext(json_title_1))
+                    data3.append(cleantext(json_title_2))
+                    i = i+1
+                except:
+                    i = i+1
+        else:
+            no_results_message = "Nothing Found"            
     return render_template("dbanews.html",
-                            data1 = data1, data2 = data2, data3= data3,text = no_result_message , error = error)
+                            data1 = data1, data2 = data2, data3= data3, text = no_results_message , error = error)
 
 if __name__=='__main__':
     app.run(debug=True)

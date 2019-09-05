@@ -59,7 +59,7 @@ def index():
         my_cse_id = "015412766603364199948:gcwpmzkgfqe"
         def google_search(search_term, api_key, cse_id, **kwargs):
             service = build("customsearch", "v1", developerKey=api_key)
-            res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
+            res = service.cse().list(q=search_term, cx=cse_id,sort = 'date', **kwargs).execute()
             return res
         def highlight_title(search_word, text):
             # mystring = text
@@ -155,7 +155,7 @@ def dbanews():
 
         def google_search(search_term, api_key, cse_id, **kwargs):
             service = build("customsearch", "v1", developerKey=api_key)
-            res = service.cse().list(q=search_term, cx=cse_id,sort = 'date',**kwargs).execute()
+            res = service.cse().list(q=search_term, cx=cse_id,sort ='date',**kwargs).execute()
             return res
 
         def cleantext(text):
